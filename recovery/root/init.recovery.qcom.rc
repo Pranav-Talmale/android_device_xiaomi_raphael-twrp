@@ -48,5 +48,5 @@ on fs
 on boot
     start health-hal-2-1
     chmod 0777 /system/bin/unified-script.sh
-    start vendor.qti.vibrator
+#    start vendor.qti.vibrator
     setprop sys.usb.config adb
