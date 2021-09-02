@@ -1,4 +1,4 @@
-# Device tree for Redmi miatoll devices (codenamed _vayu_)
+# Device tree for Poco X3 Pro devices (codenamed _vayu_ / _bhima_)
 
 
 ## Device specifications
