@@ -21,7 +21,7 @@
 
 ---
 ## Kernel sources
-"https://github.com/Jebaitedneko/android_kernel_xiaomi_vayu.git"
+"https://github.com/Jebaitedneko/android_kernel_xiaomi_vayu.git" (-b base)
 
 ---
 ## Copyright notice
