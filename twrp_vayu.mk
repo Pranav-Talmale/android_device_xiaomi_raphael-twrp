@@ -20,6 +20,9 @@ DEVICE_PATH := device/xiaomi/vayu
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
+# for the amended f2fs command
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
