@@ -18,7 +18,6 @@
 # 	Please maintain this if you use this script or any part of it
 #
 FDEVICE="vayu"
-
 fox_get_target_device() {
 local chkdev=$(echo "$BASH_SOURCE" | grep -w $FDEVICE)
    if [ -n "$chkdev" ]; then 
@@ -51,6 +50,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_TAR_BINARY=1
 	export FOX_USE_SED_BINARY=1
 	export FOX_USE_XZ_UTILS=1
+	export OF_ENABLE_LPTOOLS=1
         export OF_QUICK_BACKUP_LIST="/boot;/data;"
 	export OF_PATCH_AVB20=1
         export FOX_DELETE_AROMAFM=1
