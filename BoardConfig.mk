@@ -1,7 +1,7 @@
 #
 # Copyright 2018 The Android Open Source Project
 #
-#  Copyright (C) 2021 The OrangeFox Recovery Project
+#  Copyright (C) 2021-2022 The OrangeFox Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -120,3 +120,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 # Crypto
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
+
+# drift/offset
+TW_QCOM_ATS_OFFSET := 1617714502203
+#
