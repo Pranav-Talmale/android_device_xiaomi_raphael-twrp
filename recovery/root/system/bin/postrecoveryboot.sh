@@ -24,11 +24,11 @@
 #
 
 set_read_write_partitions() {
-  local F=$(getprop "ro.orangefox.fastbootd");
-  [ "$F" = "1" ] && return; # don't run this in fastbootd mode
+  local i=$(getprop "ro.orangefox.fastbootd");
+  [ "$i" = "1" ] && return; # don't run this in fastbootd mode
 
-  local Parts=("system" "system_ext" "vendor" "product");
-  for i in "${Parts[@]}"
+  local Parts="system system_ext vendor product";
+  for i in ${Parts}
   do
      echo "I:OrangeFox: setting $i to read/write" >> /tmp/recovery.log;
      blockdev --setrw /dev/block/mapper/$i;
