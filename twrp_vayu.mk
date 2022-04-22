@@ -18,17 +18,10 @@
 PRODUCT_RELEASE_NAME := vayu
 DEVICE_PATH := device/xiaomi/vayu
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-
-# for the amended f2fs command
-# casefolding causes encryption problems with f2fs formatting on Android 12
-# so disable this
-# $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
-# Inherit from our custom product configuration
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
-
-# Inherit device configuration
 $(call inherit-product, device/xiaomi/vayu/device.mk)
 
 ## Device identifier. This must come after all inclusions
