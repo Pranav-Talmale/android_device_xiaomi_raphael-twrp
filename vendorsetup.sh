@@ -46,10 +46,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_NO_MIUI_PATCH_WARNING=1
 	export FOX_USE_BASH_SHELL=1
 	export FOX_ASH_IS_BASH=1
-	export FOX_USE_TAR_BINARY=1
-	export FOX_USE_SED_BINARY=1
-	export FOX_USE_XZ_UTILS=1
-	export OF_ENABLE_LPTOOLS=1
+	export FOX_REMOVE_BUSYBOX_BINARY=1
     export OF_QUICK_BACKUP_LIST="/boot;/data;/system_image;/vendor_image;"
 	export OF_PATCH_AVB20=1
     export FOX_DELETE_AROMAFM=1
