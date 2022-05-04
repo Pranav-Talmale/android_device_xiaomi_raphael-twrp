@@ -23,7 +23,7 @@
 |       |Third rear camera 13MP ultra wide angle 124º f/2.4 aperture, Third rear camera sensor Samsung S5K3L6 1.12μm 1/3" |
 
 ## Device picture
-![Xiaomi Redmi K20 Pro](https://i1.mifile.cn/f/i/2019/redmik20pro/section27_img3.jpg? "Xiaomi Redmi K20 Pro")
+![Xiaomi Redmi K20 Pro](https://camo.githubusercontent.com/a3c8df8a8a9d3c1f31ee082e779e7fd5545d2dc6cdd5defbe1e5a8f047e8fc3e/68747470733a2f2f69312e6d6966696c652e636e2f662f692f323031392f7265646d696b323070726f2f73656374696f6e32375f696d67332e6a70673f)
 
 ## Compile
 
