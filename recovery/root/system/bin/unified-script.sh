@@ -1,30 +1,27 @@
 #!/system/bin/sh
 # set a couple of props, depending on device
 
-load_vayu()
+load_raphael()
 {
-    resetprop "ro.product.name" "vayu"
-    resetprop "ro.product.model" "Poco X3 Pro NFC (M2102J20SG)"
+    resetprop "ro.product.name" "raphael"
+    resetprop "ro.product.model" "Mi 9T Pro"
 }
 
-load_bhima()
+load_raphaelin()
 {
-    resetprop "ro.product.name" "bhima"
-    resetprop "ro.product.model" "Poco X3 Pro (M2102J20SI)"
+    resetprop "ro.product.name" "raphaelin"
+    resetprop "ro.product.model" "Redmi K20 Pro"
 }
 
 variant=$(getprop ro.boot.hwc)
 echo $variant
 
 case $variant in
-    "GLOBAL")
-        load_vayu;
+    *)
+        load_raphael;
         ;;
     "INDIA")
-        load_bhima;
-        ;;
-    *)
-        load_vayu;
+        load_raphaelin;
         ;;
 esac
 
