@@ -13,11 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-# Display
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
-
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display
 
@@ -27,33 +22,25 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# Assert
-TARGET_OTA_ASSERT_DEVICE := vayu,bhima
-
-TARGET_COPY_OUT_VENDOR := vendor
-
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
 # platform
 PLATFORM_VERSION := 127
-PLATFORM_SECURITY_PATCH := 2127-12-31
-PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
-
-# vendor
+PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-
-# Set boot SPL
+PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+
+BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
+    --prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
+    --prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-TARGET_RECOVERY_DEVICE_MODULES += libion libandroidicu vendor.display.config@1.0 vendor.display.config@2.0 libdisplayconfig.qti vendor.qti.hardware.vibrator.service vendor.qti.hardware.vibrator.impl libqtivibratoreffect
+TARGET_RECOVERY_DEVICE_MODULES += libion libandroidicu vendor.display.config@1.0 vendor.display.config@2.0 libdisplayconfig.qti
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -76,18 +63,13 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_APEX := true
 
 # Vibrator
-TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-
-RECOVERY_BINARY_SOURCE_FILES += \
-    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/vendor.qti.hardware.vibrator.service
+# disable vibration for testing purposes
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
-    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.qti.hardware.vibrator.impl.so \
-    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libqtivibratoreffect.so
 
 PRODUCT_COPY_FILES += \
     $(OUT_DIR)/target/product/vayu/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so

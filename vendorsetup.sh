@@ -17,7 +17,7 @@
 #
 # 	Please maintain this if you use this script or any part of it
 #
-FDEVICE="vayu"
+FDEVICE="raphael"
 fox_get_target_device() {
 local chkdev=$(echo "$BASH_SOURCE" | grep -w $FDEVICE)
    if [ -n "$chkdev" ]; then 
@@ -34,13 +34,12 @@ fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_USE_GREEN_LED=0
-        export FOX_ENABLE_APP_MANAGER=0
+    export FOX_ENABLE_APP_MANAGER=0
    	export TW_DEFAULT_LANGUAGE="en"
 	export LC_ALL="C"
  	export ALLOW_MISSING_DEPENDENCIES=true
-	export TARGET_DEVICE_ALT="bhima"
-	export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
-	export FOX_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
+	export TARGET_DEVICE_ALT="raphaelin"
+	export OF_TARGET_DEVICES="raphaelin,raphael"
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
 	export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
 	export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
@@ -51,10 +50,10 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_SED_BINARY=1
 	export FOX_USE_XZ_UTILS=1
 	export OF_ENABLE_LPTOOLS=1
-        export OF_QUICK_BACKUP_LIST="/boot;/data;"
+    export OF_QUICK_BACKUP_LIST="/boot;/data;/system_image;/vendor_image;"
 	export OF_PATCH_AVB20=1
-        export FOX_DELETE_AROMAFM=1
-        export FOX_BUGGED_AOSP_ARB_WORKAROUND="1616300800"; # Sun 21 Mar 04:26:40 GMT 2021
+    export FOX_DELETE_AROMAFM=1
+    export FOX_BUGGED_AOSP_ARB_WORKAROUND="1616300800"; # Sun 21 Mar 04:26:40 GMT 2021
 
 	# use magisk 24.3 for the magisk addon
 	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v24.3.zip
@@ -66,15 +65,11 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
         export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
 
 	# screen settings
-	export OF_SCREEN_H=2400
-	export OF_STATUS_H=100
-	export OF_STATUS_INDENT_LEFT=48
-	export OF_STATUS_INDENT_RIGHT=48
-  	export OF_HIDE_NOTCH=1
-	export OF_CLOCK_POS=1
+	export OF_STATUS_INDENT_LEFT="48"
+	export OF_STATUS_INDENT_RIGHT="48"
+	export OF_SCREEN_H=2340
 
-	# maximum permissible splash image size (in kilobytes); do *NOT* increase!
-	export OF_SPLASH_MAX_SIZE=130
+
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then

@@ -15,8 +15,8 @@
 #
 
 # Release name
-PRODUCT_RELEASE_NAME := vayu
-DEVICE_PATH := device/xiaomi/vayu
+PRODUCT_RELEASE_NAME := raphael
+DEVICE_PATH := device/xiaomi/raphael
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
@@ -29,11 +29,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/xiaomi/vayu/device.mk)
+$(call inherit-product, device/xiaomi/raphael/device.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := vayu
-PRODUCT_NAME := twrp_vayu
-PRODUCT_BRAND := POCO
-PRODUCT_MODEL := M2102J20SG
+PRODUCT_DEVICE := raphael
+PRODUCT_NAME := twrp_raphael
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MODEL := Mi 9T Pro
 PRODUCT_MANUFACTURER := Xiaomi
