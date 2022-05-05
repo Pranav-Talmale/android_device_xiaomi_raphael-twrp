@@ -52,6 +52,15 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_PATCH_AVB20=1
         export FOX_DELETE_AROMAFM=1
         export FOX_BUGGED_AOSP_ARB_WORKAROUND="1616300800"; # Sun 21 Mar 04:26:40 GMT 2021
+        export OF_SKIP_DECRYPTED_ADOPTED_STORAGE=1
+	export OF_FBE_METADATA_MOUNT_IGNORE=1
+	export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
+        export OF_USE_SYSTEM_FINGERPRINT=1
+	export OF_USE_TWRP_SAR_DETECT=1
+        export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
+
+
+
 
 	# use magisk 24.3 for the magisk addon
 	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v24.3.zip
@@ -67,7 +76,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_STATUS_INDENT_RIGHT="48"
 	export OF_SCREEN_H=2340
 
-
+        # run a process after formatting data to work-around MTP issues
+	export OF_FORCE_CREATE_DATA_MEDIA_ON_FORMAT=1
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
