@@ -34,7 +34,7 @@ fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_USE_GREEN_LED=0
-    export FOX_ENABLE_APP_MANAGER=0
+        export FOX_ENABLE_APP_MANAGER=0
    	export TW_DEFAULT_LANGUAGE="en"
 	export LC_ALL="C"
  	export ALLOW_MISSING_DEPENDENCIES=true
@@ -46,11 +46,12 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_NO_MIUI_PATCH_WARNING=1
 	export FOX_USE_BASH_SHELL=1
 	export FOX_ASH_IS_BASH=1
+	export FOX_USE_LZMA_COMPRESSION=1
 	export FOX_REMOVE_BUSYBOX_BINARY=1
-    export OF_QUICK_BACKUP_LIST="/boot;/data;/system_image;/vendor_image;"
+        export OF_QUICK_BACKUP_LIST="/boot;/data;/system_image;/vendor_image;"
 	export OF_PATCH_AVB20=1
-    export FOX_DELETE_AROMAFM=1
-    export FOX_BUGGED_AOSP_ARB_WORKAROUND="1616300800"; # Sun 21 Mar 04:26:40 GMT 2021
+        export FOX_DELETE_AROMAFM=1
+        export FOX_BUGGED_AOSP_ARB_WORKAROUND="1616300800"; # Sun 21 Mar 04:26:40 GMT 2021
 
 	# use magisk 24.3 for the magisk addon
 	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v24.3.zip
