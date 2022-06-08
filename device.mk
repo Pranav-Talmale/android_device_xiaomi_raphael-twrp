@@ -26,6 +26,10 @@ PRODUCT_SHIPPING_API_LEVEL := 30
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := raphael,raphaelin
+
+
 # platform
 PLATFORM_VERSION := 127
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -40,7 +44,7 @@ BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-TARGET_RECOVERY_DEVICE_MODULES += libion libandroidicu vendor.display.config@1.0 vendor.display.config@2.0 libdisplayconfig.qti
+TARGET_RECOVERY_DEVICE_MODULES += libion vendor.display.config@1.0 vendor.display.config@2.0 libdisplayconfig.qti
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -71,5 +75,3 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
 
-PRODUCT_COPY_FILES += \
-    $(OUT_DIR)/target/product/raphael/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so

@@ -27,8 +27,6 @@
 
 ## Compile
 
-You can find a full compile guide for OrangeFox [Here](https://wiki.orangefox.tech/en/dev/building)
-
 Lunch command :
 ```
 lunch twrp_raphael-eng && mka recoveryimage
