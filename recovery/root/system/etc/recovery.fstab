@@ -3,6 +3,6 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 #<src>                                                 <mnt_point>            <type>  <mnt_flags and options>                                                              <fs_mgr_flags>
-/dev/block/by-name/metadata                             /metadata              ext4    noatime,nosuid,nodev,discard                                                        wait,check,formattable,first_stage_mount
-/dev/block/bootdevice/by-name/userdata                  /data                  ext4    noatime,nosuid,nodev,barrier=1,noauto_da_alloc,inlinecrypt,lazytime                 wait,check,fileencryption=ice,wrappedkey,quota,reservedsize=128M,encryptable=footer,keydirectory=/metadata/vold/metadata_encryption
-/dev/block/bootdevice/by-name/misc                      /misc                  emmc    defaults                                             defaults
+/dev/block/by-name/metadata                             /metadata                ext4    noatime,nosuid,nodev,discard                         wait,check,formattable
+/dev/block/bootdevice/by-name/userdata                  /data                    ext4    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt       latemount,wait,check,quota,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs
+/dev/block/bootdevice/by-name/misc                      /misc                    emmc    defaults                                             defaults
