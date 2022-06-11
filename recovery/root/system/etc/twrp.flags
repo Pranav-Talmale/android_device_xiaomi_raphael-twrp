@@ -10,8 +10,6 @@
 /system_root   ext4   	/dev/block/bootdevice/by-name/system                    flags=display="System";backup=0;wipeingui
 /vendor        ext4   	/dev/block/bootdevice/by-name/vendor                    flags=display="Vendor";backup=0;wipeingui
 
-/data          ext4   	/dev/block/bootdevice/by-name/userdata                  flags=fileencryption=ice:aes-256-cts:aes-256-heh;wrappedkey;keydirectory=/metadata/vold/metadata_encryption
-#/data          ext4   	/dev/block/bootdevice/by-name/userdata                  flags=encryptable=footer;fileencryption=ice:aes-256-cts:aes-256-heh;wrappedkey;keydirectory=/metadata/vold/metadata_encryption
 /metadata      ext4     /dev/block/bootdevice/by-name/metadata			flags=display="Metadata";backup=1;wipeingui
 
 /system_image  emmc    	/dev/block/bootdevice/by-name/system			flags=display="System_image";backup=1;flashimg=1
@@ -25,7 +23,6 @@
 /cust          ext4   	/dev/block/bootdevice/by-name/cust                      flags=display="Cust"
 /cust_image     emmc    /dev/block/bootdevice/by-name/cust                    	flags=display="Cust (Image)";backup=0;flashimg=1
 
-/misc          emmc   	/dev/block/bootdevice/by-name/misc
 /modem         emmc   	/dev/block/bootdevice/by-name/modem                     flags=backup=1;display="Modem"
 /bluetooth     emmc   	/dev/block/bootdevice/by-name/bluetooth                 flags=backup=1;subpartitionof=/modem
 /dsp           emmc   	/dev/block/bootdevice/by-name/dsp                       flags=backup=1;subpartitionof=/modem
