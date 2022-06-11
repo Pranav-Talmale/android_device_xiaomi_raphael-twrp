@@ -3,6 +3,7 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 #<src>                                                 <mnt_point>            <type>  <mnt_flags and options>                                                              <fs_mgr_flags>
-/dev/block/by-name/metadata                             /metadata                ext4    noatime,nosuid,nodev,discard                         wait,check,formattable
-/dev/block/bootdevice/by-name/userdata                  /data                    ext4    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt       latemount,wait,check,quota,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs
+/dev/block/bootdevice/by-name/metadata                  /metadata                ext4    noatime,nosuid,nodev,discard,data=journal,commit=1                         wait,check,formattable
+/dev/block/bootdevice/by-name/userdata                  /data                    ext4    noatime,nosuid,nodev,barrier=1,noauto_da_alloc,inlinecrypt       latemount,wait,check,encryptable=ice,wrappedkey,keydirectory=/metadata/vold/metadata_encryption,quota,reservedsize=128M
+/dev/block/bootdevice/by-name/userdata                  /data                    f2fs    noatime,nosuid,nodev,discard,fsync_mode=nobarrier,inlinecrypt    latemount,wait,encryptable=ice,wrappedkey,check,quota,formattable,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,keydirectory=/metadata/vold/metadata_encryption,checkpoint=fs
 /dev/block/bootdevice/by-name/misc                      /misc                    emmc    defaults                                             defaults
