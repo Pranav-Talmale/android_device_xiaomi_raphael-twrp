@@ -109,4 +109,7 @@ BOARD_USES_QCOM_FBE_DECRYPTION := true
 
 # drift/offset
 TW_QCOM_ATS_OFFSET := 1617714502203
+
+# SELinux
+BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy-minimal
 #
