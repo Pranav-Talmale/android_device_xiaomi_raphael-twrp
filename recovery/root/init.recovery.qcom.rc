@@ -30,9 +30,6 @@ import /init.recovery.qcom_decrypt.rc
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-
-on init
-    symlink /system/bin/dd /sbin/dd
 		
 service unified-script /system/bin/unified-script.sh
     user root
@@ -40,6 +37,13 @@ service unified-script /system/bin/unified-script.sh
     disabled
     oneshot
     seclabel u:r:recovery:s0   	
+
+service symlink-script /system/bin/symlink.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
 	
 service vendor.qti.vibrator /system/bin/vendor.qti.hardware.vibrator.service
     user root
@@ -54,4 +58,6 @@ on boot
     start health-hal-2-1	
 	chmod 0777 /system/bin/unified-script.sh
     start unified-script
+    chmod 0777 /system/bin/symlink.sh	
+	start symlink-script
 
