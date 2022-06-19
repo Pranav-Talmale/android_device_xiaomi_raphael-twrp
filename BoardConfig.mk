@@ -124,4 +124,7 @@ BOARD_USES_METADATA_PARTITION := true
 
 # drift/offset
 TW_QCOM_ATS_OFFSET := 1617714502203
+
+# include python, for ABX conversion
+TW_INCLUDE_PYTHON := true
 #
