@@ -16,15 +16,16 @@
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display
 
-PRODUCT_PACKAGES += \
-    qcom_decrypt \
-    qcom_decrypt_fbe
-
 PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := raphael,raphaelin
@@ -36,10 +37,6 @@ PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-
-BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
-    --prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
-    --prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
@@ -65,6 +62,9 @@ TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_APEX := true
+
+# include python, for ABX conversion
+TW_INCLUDE_PYTHON := true
 
 # Vibrator
 # disable vibration for testing purposes
