@@ -30,6 +30,9 @@ PRODUCT_PACKAGES += \
 # Assert
 TARGET_OTA_ASSERT_DEVICE := raphael,raphaelin
 
+# Boot Hal 1.2
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.2.system
 
 # platform
 PLATFORM_VERSION := 127
@@ -78,3 +81,6 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
 
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/raphael/system/lib64/android.hardware.boot@1.2.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/android.hardware.boot@1.2.so
+ 
