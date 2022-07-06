@@ -11,7 +11,7 @@
 /vendor        ext4   	/dev/block/bootdevice/by-name/vendor                    flags=display="Vendor";backup=0;wipeingui
 
 /metadata      ext4     /dev/block/bootdevice/by-name/metadata			flags=display="Metadata";backup=1;wipeingui
-/data          f2fs     /dev/block/bootdevice/by-name/userdata      flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,quota,checkpoint=fs
+/data          ext4     /dev/block/bootdevice/by-name/userdata      flags=fileencryption=ice,keydirectory=/metadata/vold/metadata_encryption
 
 /system_image  emmc    	/dev/block/bootdevice/by-name/system			flags=display="System_image";backup=1;flashimg=1
 /vendor_image  emmc    	/dev/block/bootdevice/by-name/vendor			flags=display="Vendor_image";backup=1;flashimg=1
