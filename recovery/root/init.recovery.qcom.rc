@@ -37,6 +37,13 @@ service unified-script /system/bin/unified-script.sh
     disabled
     oneshot
     seclabel u:r:recovery:s0   	
+
+service wrapped-key /system/bin/wrappedkey-fix.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
 	
 service vendor.qti.vibrator /system/bin/vendor.qti.hardware.vibrator.service
     user root
@@ -44,6 +51,10 @@ service vendor.qti.vibrator /system/bin/vendor.qti.hardware.vibrator.service
     disabled
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     seclabel u:r:recovery:s0	
+
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    chmod 0777 /system/bin/wrappedkey-fix.sh
+    start wrapped-key
 
 on boot
     start vendor.qti.vibrator
