@@ -38,7 +38,7 @@ local LOGF=/tmp/recovery.log;
 
     local found=0;
     if [ -n "$(grep ro.potato $F)" ]; then
-    	found=1;
+    	found=1;	
     elif [ -n "$(grep org.pixelplusui $F)" ]; then
     	found=1;
     elif [ -n "$(grep org.evolution $F)" ]; then
@@ -47,13 +47,40 @@ local LOGF=/tmp/recovery.log;
     	found=1;
     elif [ -n "$(grep -i Streak $F)" ]; then
     	found=1;
+	elif [ -n "$(grep ro.arrow $F)" ]; then
+    	found=2;
+    elif [ -n "$(grep ro.syberia $F)" ]; then
+    	found=3;		
     fi
-    if [ "$found" = "1" ]; then
+    
+	if [ "$found" = "1" ]; then
        echo "This is a no-wrappedkey ROM. Replacing the default fstab."; >> $LOGF;
        rm -rf /system/etc/recovery.fstab;
-	   mv /system/etc/evox.fstab /system/etc/recovery.fstab;
+	   mv /system/etc/extra-fstab/wrappedkey.fstab /system/etc/recovery.fstab;
     else
        echo "This is not a no-wrappedkey ROM. Continuing with the default fstab"; >> $LOGF;
+    fi
+
+	
+	if [ "$found" = "2" ]; then
+       echo "This is a non-metadata encryption ROM. Replacing the default fstab."; >> $LOGF;
+       rm -rf /system/etc/recovery.fstab;
+	   mv /system/etc/extra-fstab/non_meta.fstab /system/etc/recovery.fstab;
+	   rm -rf /system/etc/twrp.flags;
+	   mv /system/etc/extra-fstab/non_meta.flags /system/etc/twrp.flags;
+    else
+       echo "This is not a non-metadata encryption ROM. Continuing with the default fstab"; >> $LOGF;
+    fi
+
+
+	if [ "$found" = "3" ]; then
+       echo "This is a fscompress ROM. Replacing the default fstab and flags."; >> $LOGF;
+       rm -rf /system/etc/recovery.fstab;
+	   mv /system/etc/extra-fstab/fscompress.fstab /system/etc/recovery.fstab;
+	   rm -rf /system/etc/twrp.flags;
+	   mv /system/etc/extra-fstab/fscompress.flags /system/etc/twrp.flags;
+    else
+       echo "This is not a fscompress ROM. Continuing with the default fstab"; >> $LOGF;
     fi
 }
 
