@@ -124,7 +124,13 @@ BOARD_USES_METADATA_PARTITION := true
 
 # drift/offset
 TW_QCOM_ATS_OFFSET := 1617714502203
+#
+# cure for "ELF binaries" problems
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
-# include python, for ABX conversion
-TW_INCLUDE_PYTHON := true
+# deal with "error: overriding commands for target" problems
+BUILD_BROKEN_DUP_RULES := true
+
+#
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 #
