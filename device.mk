@@ -19,14 +19,25 @@
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display
 
-PRODUCT_SHIPPING_API_LEVEL := 30
-
 # Assert
 TARGET_OTA_ASSERT_DEVICE := raphael,raphaelin
 
 TARGET_COPY_OUT_VENDOR := vendor
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock.recovery \
+    fastbootd 
+
+#BootHal
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.1-impl-qti \
+    android.hardware.boot@1.1-impl-qti.recovery \
+    android.hardware.boot@1.1-service
 
 # Crypto
 PRODUCT_PACKAGES += \
@@ -72,6 +83,7 @@ TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_APEX := true
+TW_INCLUDE_FASTBOOTD := true
 
 # Vibrator
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
