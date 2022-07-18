@@ -81,6 +81,11 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# run a process after formatting data to work-around MTP issues
 	export OF_FORCE_CREATE_DATA_MEDIA_ON_FORMAT=1
 
+        # necessary to decrypt FBEv1 ROMs
+	if [ "$FOX_VARIANT" = "FBEv1" ]; then
+        export OF_FIX_DECRYPTION_ON_DATA_MEDIA=1
+	fi
+
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
   	   export | grep "FOX" >> $FOX_BUILD_LOG_FILE
