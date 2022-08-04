@@ -27,9 +27,6 @@ PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
 
-# Assert
-TARGET_OTA_ASSERT_DEVICE := raphael,raphaelin
-
 # Boot Hal 1.2
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2.system
