@@ -18,19 +18,19 @@
 # 	Please maintain this if you use this script or any part of it
 #
 FDEVICE="raphael"
-#set -o xtrace
 
 fox_get_target_device() {
-local chkdev=$(echo "$BASH_SOURCE" | grep -w $FDEVICE)
+local chkdev=$(echo "$BASH_SOURCE" | grep -w \"$FDEVICE\")
    if [ -n "$chkdev" ]; then 
       FOX_BUILD_DEVICE="$FDEVICE"
    else
-      chkdev=$(set | grep BASH_ARGV | grep -w $FDEVICE)
+      chkdev=$(set | grep BASH_ARGV | grep -w \"$FDEVICE\")
       [ -n "$chkdev" ] && FOX_BUILD_DEVICE="$FDEVICE"
    fi
 }
 
 if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
+   echo "** WARNING **: Always set FOX_BUILD_DEVICE to the device codename before starting to build for any device!"
    fox_get_target_device
 fi
 
@@ -77,6 +77,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
   #Maintainer Stuff
         export OF_MAINTAINER="Pranav Talmale"
         export FOX_VERSION="R11.1_0"
+	export FOX_VARIANT="FBEv1"
 
 	# run a process after formatting data to work-around MTP issues
 	export OF_FORCE_CREATE_DATA_MEDIA_ON_FORMAT=1
