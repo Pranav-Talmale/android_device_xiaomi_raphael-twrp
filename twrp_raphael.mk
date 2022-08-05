@@ -1,5 +1,5 @@
 #
-# Copyright 2018 The Android Open Source Project
+# Copyright 2022 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,14 +20,18 @@ DEVICE_PATH := device/xiaomi/raphael
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
-# Casefolding
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/xiaomi/raphael/device.mk)
+
+# Setup FBEv1 and FBEv2 Configurations
+ifeq ($(FOX_VARIANT),FBEv2)
+$(call inherit-product, device/xiaomi/raphael/FBEv2.mk)
+else
+$(call inherit-product, device/xiaomi/raphael/FBEv1.mk)
+endif
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := raphael

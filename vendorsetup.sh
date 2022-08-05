@@ -40,7 +40,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_STATUS_INDENT_RIGHT="48"
 	export OF_SCREEN_H=2340
 	export TARGET_DEVICE_ALT="raphaelin"
-	export OF_TARGET_DEVICES="raphaelin,raphael"
 	export OF_PATCH_AVB20=1
    	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
    	export OF_USE_MAGISKBOOT="1"
@@ -60,30 +59,29 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_XZ_UTILS=1
 	export FOX_REPLACE_BUSYBOX_PS=1
 	export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
-        export OF_USE_SYSTEM_FINGERPRINT=1
+    export OF_USE_SYSTEM_FINGERPRINT=1
    	export FOX_BUGGED_AOSP_ARB_WORKAROUND="1510672800"; # Tue Nov 14 15:20:00 GMT 2017
 
-	# OTA for custom ROMs
-        export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
-        export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
+    # OTA for custom ROMs
+    export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
+    export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
 
-        # -- add settings for R11 --
-        export FOX_R11=1
-        export OF_USE_TWRP_SAR_DETECT=1
-        export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
-        export OF_QUICK_BACKUP_LIST="/boot;/data;/system_image;/vendor_image;"
-        # -- end R11 settings --
+    # -- add settings for R11 --
+    export FOX_R11=1
+    export OF_USE_TWRP_SAR_DETECT=1
+    export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
+    export OF_QUICK_BACKUP_LIST="/boot;/data;/system_image;/vendor_image;"
+    # -- end R11 settings --
 
-        # Maintainer Stuff
-        export OF_MAINTAINER="Pranav Talmale"
-        export FOX_VERSION="R11.1_0"
-	export FOX_VARIANT="FBEv2"
+    # Maintainer Stuff
+    export OF_MAINTAINER="Pranav Talmale"
+    export FOX_VERSION="R11.1_0"
 
-	# run a process after formatting data to work-around MTP issues
-	export OF_FORCE_CREATE_DATA_MEDIA_ON_FORMAT=0
+    # run a process after formatting data to recreate /data/media/0 (only when forced-encryption is being disabled)
+    export OF_RUN_POST_FORMAT_PROCESS=1
 
-        # ensure that /sdcard is bind-unmounted before f2fs data repair or format
-        export OF_UNBIND_SDCARD_F2FS=1
+    # ensure that /sdcard is bind-unmounted before f2fs data repair or format
+    export OF_UNBIND_SDCARD_F2FS=1
 
         # necessary to decrypt FBEv1 ROMs
 	if [ "$FOX_VARIANT" = "FBEv1" ]; then
