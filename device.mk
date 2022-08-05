@@ -14,9 +14,12 @@
 # limitations under the License.
 #
 PRODUCT_SOONG_NAMESPACES += \
-    vendor/qcom/opensource/commonsys-intf/display
+vendor/qcom/opensource/commonsys-intf/display
 
-PRODUCT_SHIPPING_API_LEVEL := 28
+# fscrypt policy
+   TW_USE_FSCRYPT_POLICY := 2
+
+PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
