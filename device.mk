@@ -86,6 +86,12 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_APEX := true
 TW_INCLUDE_FASTBOOTD := true
 
+# Props for a Successful Casefold Format 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.dm_default_key.options_format.version=2 \
+    ro.crypto.volume.metadata.method=dm-default-key \
+    ro.crypto.volume.options=::v2 
+
 # Vibrator
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 
