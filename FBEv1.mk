@@ -13,5 +13,5 @@ BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/FBEv1/dtbo.img
 
 # Fstab and flags
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/fstab/recovery-fbev1.fstab
-PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab/evox.fstab:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/evox.fstab
+PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab/wrappedkey.fstab:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/wrappedkey.fstab
 PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab/twrp-fbev1.flags:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/twrp.flags
