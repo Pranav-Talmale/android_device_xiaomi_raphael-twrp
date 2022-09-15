@@ -26,7 +26,7 @@
 **Works**
 
 - Booting.
-- **Decryption** (Android 12)
+- **Decryption** (Android12 & Android13)
 - ADB
 - MTP
 - OTG
