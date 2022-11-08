@@ -42,41 +42,61 @@ local LOGF=/tmp/recovery.log;
     	return;
     }
 
-    local found=0;
+    # List of a12 ROMs that don't support wrappedkey fstab
+    local snow=0;
     if [ -n "$(grep ro.potato $F)" ]; then
-    	found=1;
+    	snow=1;
     elif [ -n "$(grep org.pixelplusui $F)" ]; then
-    	found=1;
+    	snow=1;
     elif [ -n "$(grep org.evolution $F)" ]; then
-    	found=1;
+    	snow=1;
     elif [ -n "$(grep -i PixysOS $F)" ]; then
-    	found=1;
+    	snow=1;
     elif [ -n "$(grep -i Streak $F)" ]; then
-    	found=1;
+    	snow=1;
+    fi
+
+    # List of a13 ROMs that support wrappedkey fstab
+    local tiramisu=0;
+    if [ -n "$(grep -i PixysOS $F)" ]; then
+    	tiramisu=1;
+    elif [ -n "$(grep -i PixelExtended $F)" ]; then
+    	tiramisu=1;
+    elif [ -n "$(grep -i PixelExperience $F)" ]; then
+    	tiramisu=1;
+    elif [ -n "$(grep ro.derp $F)" ]; then
+    	tiramisu=1;
+    elif [ -n "$(grep ro.awaken $F)" ]; then
+    	tiramisu=1;
     fi
 
     # Check ROM's SDK version
     local SDK=$(file_getprop "$F" "ro.build.version.sdk");
     [ -z "$SDK" ] && SDK=$(file_getprop "$F" "ro.system.build.version.sdk");
     [ -z "$SDK" ] && SDK=$(file_getprop "$F" "ro.vendor.build.version.sdk");
-	
-	# if (SDK = 33) - then switch to no-wrappedkey fstab
-    if [ "$SDK" = "33" ]; then
-    	echo "ROM SDK=33. Changing to wrappedkey-patched fstab." >> $LOGF;
-	found=1;
-    else
-	echo "ROM SDK=32. Continue without changing fstab." >> $LOGF;
-    fi
 
-    if [ "$found" = "1" ]; then
-       echo "This is a no-wrappedkey ROM. Replacing the default fstab." >> $LOGF;
+# if (snow = 1) and (SDK = 32) - then switch to no-wrappedkey fstab
+    if ([ $snow -eq 1 ] && [ $SDK -eq 32 ]); then
+       echo "This is a a12 no-wrappedkey ROM. Replacing the default fstab." >> $LOGF;
        mv /system/etc/recovery.fstab /tmp/backup.fstab;
        echo "Original fstab renamed to backup.fstab" >> $LOGF;
 	   mv /system/etc/wrappedkey.fstab /system/etc/recovery.fstab;
 	   setprop "wrappedkey.patched.fstab" "1";
     else
-       echo "This is not a no-wrappedkey ROM. Continuing with the default fstab" >> $LOGF;
+       echo "This is either an a12 wrappedkey ROM or a13 ROM. Continuing with the default fstab" >> $LOGF;
     fi
+
+# if (tiramisu = "1") and (SDK = 33)  - then don't switch to no-wrappedkey fstab
+    if ([ $tiramisu -eq 1 ] && [ $SDK -eq 33 ]); then
+       echo "This is either an a13 wrappedkey ROM or a12 ROM. Continuing with the default fstab" >> $LOGF;
+    else
+       echo "This is an a13 no-wrappedkey ROM. Replacing the default fstab." >> $LOGF;
+       mv /system/etc/recovery.fstab /tmp/backup.fstab;
+       echo "Original fstab renamed to backup.fstab" >> $LOGF;
+	   mv /system/etc/wrappedkey.fstab /system/etc/recovery.fstab;
+	   setprop "wrappedkey.patched.fstab" "1";
+    fi
+
 }
 
 fix_unwrap_decryption;
